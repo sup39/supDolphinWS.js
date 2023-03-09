@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>supDolphinWS Demo</title>
+  <meta name="description" content="A memory viewer demo of supDolphinWS">
+  <link rel="icon" href="https://cdn.sup39.dev/img/shine.svg">
+  <link rel="stylesheet" href="https://cdn.sup39.dev/css/index.css">
+  <style>
+    body {
+      padding: 1em;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      cursor: pointer;
+    }
+    input[type="submit"] {
+      background: #eee;
+      color: #000;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background: #ccc;
+    }
+    input[type="submit"]:active {
+      background: #aaa;
+    }
+    input[type="submit"]:disabled {
+      color: #777;
+      background: #999;
+    }
+    #mem-waffle, #mem-waffle th {
+      border: var(--bd) 1px solid;
+      font-family: ui-monospace;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    #mem-waffle td {
+      width: 1.8em;
+      border-collapse: collapse;
+      border-left: var(--bd) 1px solid;
+      border-right: var(--bd) 1px solid;
+    }
+    #mem-waffle td:first-child {
+      width: 5.8em;
+    }
+    #conn-msg {
+      white-space: pre;
+    }
+    #api-msg {
+      color: #ff9;
+      font-weight: bold;
+    }
+    header, section {
+      margin-block-end: 1em;
+    }
+  </style>
+  <script src="https://cdn.sup39.dev/js/supDolphinWS@0.1.0/index.min.js"></script>
+  <script src="./index.js"></script>
+</head>
+<body>
+  <header>
+    <h1>supDolphinWS Demo</h1>
+    <div>Author: sup39(サポミク)</div>
+    <div>Source: <a href="https://github.com/sup39/supDolphinWS.js" target="_blank" rel="noopener noreferrer">https://github.com/sup39/supDolphinWS.js</a></div>
+    <details>
+      <summary>How to setup a supDolphinWS Server</summary>
+      <h3>Preparation</h3>
+      <p>
+        Make sure you have Python &gt;= 3.8 and Dolphin beta/dev version installed.
+        Press "Windows Key + R" and enter <code>cmd.exe</code> to open command prompt,
+        and run the following command:
+        <pre><code>pip install -U supDolphinWS-server</code></pre>
+      </p>
+      <h3>Starting the Server</h3>
+      <p>
+        Start the game in Dolphin.
+        Press "Windows Key + R" and enter <code>cmd.exe</code> to open command prompt,
+        and run the following command:
+        <pre><code>python -m supDolphinWS.server</code></pre>
+      </p>
+      <p>
+        The server will listen on <code>localhost:35353</code>.
+        If you want to listen on other host or port, use the following command instead:
+        <pre><code>python -m supDolphinWS.server -h HOST -p POST</code></pre>
+        Use <code>python -m supDolphinWS.server --help</code> for more information.
+      </p>
+    </details>
+  </header>
+  <section id="sec-opt">
+    <form id="form-conf">
+      <input id="input-url" value="ws://localhost:35353">
+      <input id="btn-connect" type="submit" value="Connect">
+    </form>
+    <div id="conn-msg"></div>
+  </section>
+  <section id="sec-main" class="hidden">
+    <div id="api-msg"></div>
+    <div>
+      <span>Address: </span><input id="input-addr" maxlength="8">
+    </div>
+    <table id="mem-waffle"></table>
+    <div>
+      <button id="btn-hook">hook</button>
+    </div>
+  </section>
+</body>
+</html>

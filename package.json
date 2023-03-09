@@ -1,0 +1,44 @@
+{
+  "name": "@sup39/dolphin-ws",
+  "version": "0.1.0",
+  "author": "sup39 <sms@sup39.dev>",
+  "repository": "github.com:sup39/supDolphinWS.js",
+  "description": "A WebSocket client API library to access memory of emulated games in Dolphin",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "rollup -c && minify dist/index.js > dist/index.min.js",
+    "lint": "eslint --ext .ts --ext .tsx src/",
+    "pre-commit:add": "git add -u"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true
+    },
+    "extends": [
+      "@sup39/typescript"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@sup39/eslint-config-typescript": "^0.1.5",
+    "eslint": "^8.34.0",
+    "minify": "^9.2.0",
+    "pre-commit": "^1.2.2",
+    "rollup": "^3.15.0",
+    "typescript": "^4.9.5"
+  },
+  "pre-commit": [
+    "lint",
+    "build",
+    "pre-commit:add"
+  ]
+}
